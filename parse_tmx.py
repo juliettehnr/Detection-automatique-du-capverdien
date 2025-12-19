@@ -11,7 +11,7 @@ with open("./kea-pt.tmx", "rb") as file :
         sentences_kea.append(node.source)
         sentences_pt.append(node.target)
 
-data = [{'lang': 'kea', 'text' : phrase} for phrase in sentences_kea]+ [{'lang' : 'pt', 'text' : phrase} for phrase in sentences_pt]
+data = [{'lang': 'kea', 'text' : phrase} for phrase in sentences_kea[:50000]]+ [{'lang' : 'pt', 'text' : phrase} for phrase in sentences_pt[:50000]]
 df = pd.DataFrame(data)
 
     
