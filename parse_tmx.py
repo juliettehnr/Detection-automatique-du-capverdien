@@ -3,20 +3,24 @@ from translate.storage.tmx import tmxfile
 from sklearn.model_selection import train_test_split
 import pandas as pd 
 
-# Création du dataframe
-sentences_kea = []
-sentences_pt = []
+def create_dataset():
+    # Création du dataframe
+    sentences_kea = []
+    sentences_pt = []
 
-with open("./kea-pt.tmx", "rb") as file :
-    tmx_file = tmxfile(file, "kea", "pt")
-    
-    for node in tmx_file.unit_iter():
-        sentences_kea.append(node.source)
-        sentences_pt.append(node.target)
+    with open("./kea-pt.tmx", "rb") as file :
+        tmx_file = tmxfile(file, "kea", "pt")
+        
+        for node in tmx_file.unit_iter():
+            sentences_kea.append(node.source)
+            sentences_pt.append(node.target)
 
-data = [{'lang': 'kea', 'text' : phrase} for phrase in sentences_kea[:50000]]+ [{'lang' : 'pt', 'text' : phrase} for phrase in sentences_pt[:50000]]
-df = pd.DataFrame(data)
-df = df.sample(frac=1, random_state=42).reset_index(drop=True) #on mélange les données
+    data = [{'lang': 'kea', 'text' : phrase} for phrase in sentences_kea[:50000]]+ [{'lang' : 'pt', 'text' : phrase} for phrase in sentences_pt[:50000]]
+    df = pd.DataFrame(data)
+    df = df.sample(frac=1, random_state=42).reset_index(drop=True) #on mélange les données
+    return df
+
+df = create_dataset()
 
 # Split en train/test
 df_train, df_test = train_test_split(
