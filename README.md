@@ -1,6 +1,8 @@
 # Detection de Langue : capverdien-portugais
 Entrainement d'un classifieur pour la détection du créole capverdien
 
+Ce projet s'inscrit dans le cours *Langue peu dotées* donné par Mme Ilaine WANG & Mme Johanna CORDOVA de l'INALCO.
+
 ## 📌 Objectif
 
 - Développer un **classifieur de langue** qui identifie si une phrase donnée est en créole capverdien ou en portugais.
